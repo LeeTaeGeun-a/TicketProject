@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.project.ReviewQebc">
+
+	<resultMap type="reviewDto" id="reviewDtoMap">
+		<id property="pblprfrId"	column="pblprfr_id"/>
+		<id property="registDt"		column="regist_date"/>
+		<id property="mberId" 		column="mber_id"/>
+		<id property="content"		column="content"/>
+		<id property="score"		column="score"/>
+	</resultMap>
+
+	<select id="selectAboutPbl" resultMap="reviewDtoMap">
+		SELECT * FROM PBLPRFR_EVL_BBS
+		WHERE  PBLPRFR_ID 	= #{pblprfrId}
+	</select>
+	
+	<select id="selectAboutPblPaging" resultMap="reviewDtoMap">
+		SELECT * FROM (
+        SELECT ROWNUM RNUM , O.* FROM(
+		SELECT * FROM PBLPRFR_EVL_BBS
+		WHERE  PBLPRFR_ID 	= #{pblprfrId}
+		ORDER BY REGIST_DATE
+<![CDATA[	  
+        ) O 
+		)
+		WHERE RNUM   >= #{startRow}
+		AND   ROWNUM <= #{maxSize}
+	]]>  	
+	</select>
+	
+
+</mapper>

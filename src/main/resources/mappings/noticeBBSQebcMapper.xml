@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.project.NoticeBBSQebc">
+	
+	<resultMap type="noticeBBSDto" 	id="noticeBBSDtoMap">
+		<id property="noticeNo" 	column="notice_no"/>
+		<id property="mberId"   	column="mber_id"/>
+		<id property="noticeSj"     column="notice_sj"/>
+		<id property="registDt" 	column="regist_date"/>
+		<id property="content" 	    column="content"/>
+	</resultMap>
+	
+	<select id="selectAllKey" resultMap="noticeBBSDtoMap" >
+	  SELECT *                        
+      FROM ( SELECT ROWNUM RNUM      
+           , O.*                
+      FROM ( SELECT *          
+      FROM NOTICE_BBS
+      WHERE CONTENT LIKE #{searchKeyword}        
+      ORDER BY  TO_NUMBER(NOTICE_NO) DESC
+    <![CDATA[
+      ) O                 
+      )                           
+      WHERE RNUM >= #{start}                 
+      AND ROWNUM <= #{max}  
+      ]]>  
+	</select>
+	
+	<select id="keyCount" resultType="int" >
+	  select count(*) from NOTICE_BBS WHERE CONTENT LIKE #{searchKeyword}
+	</select>
+	
+	<select id="selectAllPage" resultMap="noticeBBSDtoMap" >          
+      SELECT *                        
+      FROM ( SELECT ROWNUM RNUM      
+           , O.*                
+      FROM ( SELECT *          
+      FROM NOTICE_BBS        
+      ORDER BY  TO_NUMBER(NOTICE_NO) DESC
+    <![CDATA[
+      ) O                 
+      )                           
+      WHERE RNUM >= #{start}                 
+      AND ROWNUM <= #{max}   
+      ]]>  
+	</select>
+	
+	<select id="maxNum" resultType="String"> 
+    select max(to_number(NOTICE_NO)) from NOTICE_BBS 
+    </select>
+    
+    <select id="count" resultType="int">
+    select count(*) from NOTICE_BBS
+    </select>
+
+</mapper>
+

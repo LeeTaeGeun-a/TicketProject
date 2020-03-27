@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+.all_agree input[type="checkbox"] {display: none;}
+
+.all_agree input[type="checkbox"] + label {
+display: inline-block; 
+width:50px; 
+height: 50px; 
+background: #fa3062;
+cursor: pointer; 
+border-radius: 3px;
+float: right;
+}
+
+.all_agree:after {
+display:block; 
+clear:both; 
+content:"";
+}
+
+.all_agree input[type="checkbox"]:checked + label {
+background:#666666;	
+ float: right
+ }
+ 
+
+
+.all_agree1 input[type="checkbox"] {display: none;}
+
+.all_agree1 input[type="checkbox"] + label {
+display: inline-block; 
+width:50px; 
+height: 50px; 
+background: #666666;
+cursor: pointer; 
+border-radius: 3px;
+float: right;
+}
+
+
+
+.all_agree1:after {
+display:block; 
+clear:both; 
+content:"";
+}
+
+.all_agree1 input[type="checkbox"]:checked + label {
+background:#fa3062;	
+ float: right
+ }
+
+
+	
+	
+

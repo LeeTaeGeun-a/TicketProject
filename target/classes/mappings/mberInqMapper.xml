@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.project.MberInqDao">
+	<resultMap type="mberInqDto" 	id="inqDtoMap">
+		<id property="mberId" 		column="mber_id"/>
+		<id property="inqryNo"   	column="inqry_no"/>
+		<id property="inqrySj" 		column="inqry_sj"/>
+		<id property="registDate" 	column="regist_date"/>
+		<id property="refrnNo" 		column="refrn_no"/>
+		<id property="reStep" 		column="re_step"/>
+		<id property="answerAt" 	column="answer_at"/>
+		<id property="content" 		column="content"/>
+	</resultMap>
+	<select id="selectOne" resultMap="inqDtoMap">
+	SELECT * FROM MBER_INQRY_BBS
+	WHERE MBER_ID  = #{mberId}
+	AND   INQRY_NO = #{inqryNo}
+	</select>
+	
+	<update id="update" parameterType="mberInqDto">
+	UPDATE MBER_INQRY_BBS SET
+		INQRY_SJ 	= #{inqrySj}
+	   ,REGIST_DATE = #{registDate}
+	   ,REFRN_NO    = #{refrnNo} 
+	   ,RE_STEP     = #{reStep}
+	   ,ANSWER_AT   = #{answerAt}
+	   ,CONTENT     = #{content}
+	WHERE MBER_ID  = #{mberId}
+	AND	  INQRY_NO = #{inqryNo}
+	
+	</update>
+	<insert id="insert" parameterType="mberInqDto">
+	INSERT INTO MBER_INQRY_BBS 
+	(MBER_ID,INQRY_NO,INQRY_SJ,REGIST_DATE,REFRN_NO,RE_STEP,ANSWER_AT,CONTENT)
+	VALUES(#{mberId}, #{inqryNo},#{inqrySj},#{registDate},#{refrnNo},#{reStep},#{answerAt},#{content})
+	</insert>
+	<delete id ="delete" parameterType="mberInqDto">
+	DELETE FROM MBER_INQRY_BBS
+	WHERE MBER_ID  = #{mberId}
+	AND   INQRY_NO = #{inqryNo}
+	OR    REFRN_NO = #{inqryNo}
+	</delete>
+</mapper>

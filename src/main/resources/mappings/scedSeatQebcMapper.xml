@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.project.ScedSeatQebc">
+	
+	 <resultMap type="scedSeatDto" 	id="scedSeatDtoMap">
+	
+		<id property="pblprfrId" 	column="pblprfr_id"/>
+		<id property="scrinngDt"   	column="scrinng_dt"/>
+		<id property="theatId" 		column="theat_id"/>
+		<id property="scrinngRmId"	column="scrinng_room_id"/>
+		<id property="seatRow" 		column="seat_row"/>
+		<id property="seatCol" 		column="seat_col"/>
+		<id property="advnAt"   	column="advn_at"/>
+		
+	</resultMap>
+	
+	<select id="selectAllInsert" resultMap="scedSeatDtoMap">
+	    SELECT DISTINCT SEAT_SCHEDULE.SCRINNG_DT,PBLPRFR.PBLPRFR_ID FROM SCRINNG,PBLPRFR,SEAT_SCHEDULE
+        WHERE SEAT_SCHEDULE.THEAT_ID        = #{theatId}
+        AND   PBLPRFR.THEAT_ID              = #{theatId}
+        AND   SEAT_SCHEDULE.SCRINNG_ROOM_ID = #{scrRmId}  
+        AND   PBLPRFR.SCRINNG_ROOM_ID       = #{scrRmId}  
+        AND   SCRINNG.PBLPRFR_ID            = PBLPRFR.PBLPRFR_ID
+        AND   SCRINNG.SCRINNG_DT            = SEAT_SCHEDULE.SCRINNG_DT
+        AND   SEAT_SCHEDULE.SCRINNG_DT      > #{crtTime}
+        AND   SCRINNG.SCRINNG_AT            = 'Y'
+	</select>
+	
+	<select id="selectAllcrtTime" resultMap="scedSeatDtoMap">
+		SELECT * FROM SEAT_SCHEDULE
+		WHERE THEAT_ID 			= #{theatId}
+		AND   SCRINNG_ROOM_ID 	= #{scrRmId}  
+		AND   SEAT_COL 		    = #{seatCol}
+		AND   SEAT_ROW 		    = #{seatRow}
+		AND   SCRINNG_DT        > #{crtTime}
+	</select> 
+	
+	<select id="selectForAdvntk" resultMap="scedSeatDtoMap">
+		SELECT * FROM SEAT_SCHEDULE
+		WHERE THEAT_ID 			= #{theatId}
+		AND   SCRINNG_ROOM_ID 	= #{scrinngRmId}  
+		AND   SCRINNG_DT 		= #{scrinngDt}
+		ORDER BY TO_NUMBER(SEAT_ROW) , TO_NUMBER(SEAT_COL)
+	</select> 
+	
+	<select id="selectMaxRow" resultType="int">
+		SELECT MAX(TO_NUMBER(SEAT_ROW)) FROM SEAT_SCHEDULE
+		WHERE THEAT_ID 			= #{theatId}
+		AND   SCRINNG_ROOM_ID 	= #{scrinngRmId}  
+		AND   SCRINNG_DT 		= #{scrinngDt}
+	</select>
+	
+	<select id="selectMaxCol" resultType="int">
+		SELECT MAX(TO_NUMBER(SEAT_COL)) FROM SEAT_SCHEDULE
+		WHERE THEAT_ID 			= #{theatId}
+		AND   SCRINNG_ROOM_ID 	= #{scrinngRmId}  
+		AND   SCRINNG_DT 		= #{scrinngDt}
+	</select>
+
+</mapper>
+

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.project.TheatQebc">
+	
+	<resultMap type="theatDto" 	id="theatDtoMap">
+		<id property="theatId" 		column="theat_id"/>
+		<id property="theatLoc"   	column="theat_lc"/>
+		<id property="theatNm" 		column="theat_nm"/>
+		<id property="theatTel" 	column="theat_tel"/>
+		<id property="bizQitAt" 	column="bizqit_at"/>
+	</resultMap>
+	
+	<select id="selectNm" resultMap="theatDtoMap">
+	<if test='startRow != null'>          
+      	  SELECT * FROM (
+          SELECT ROWNUM RNUM , O.* FROM(
+    </if>      
+		  SELECT *
+		  FROM THEAT
+		  WHERE THEAT_NM LIKE #{searchWord}
+	<if test='startRow != null'>
+	<![CDATA[ 	  
+          ) O 
+		  )
+		  WHERE RNUM   >= #{startRow}
+		  AND   ROWNUM <= #{maxCnt}
+	]]>  	    
+	</if>	     
+	</select>
+	
+	<select id="selectLoc" resultMap="theatDtoMap"> 
+	<if test='startRow != null'>         
+      	  SELECT * FROM (
+          SELECT ROWNUM RNUM , O.* FROM(
+    </if>
+		  SELECT *
+		  FROM THEAT
+		  WHERE THEAT_LC LIKE #{searchWord}
+	<if test='startRow != null'>
+	<![CDATA[ 	  
+          ) O 
+		  )
+		  WHERE RNUM   >= #{startRow}
+		  AND   ROWNUM <= #{maxCnt}
+	]]>  	    
+	</if>	     
+	</select>
+	
+	<select id="selectAll" resultMap="theatDtoMap" >          
+      SELECT * FROM THEAT WHERE BIZQIT_AT = 'Y'    
+	</select>
+
+    <select id="maxNum" resultType="String"> 
+    select max(to_number(theat_id)) from theat
+    </select>
+	
+	
+	
+</mapper>
+

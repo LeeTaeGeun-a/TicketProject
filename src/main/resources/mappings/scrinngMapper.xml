@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.project.ScrinngDAO">
+	
+	<resultMap type="scrinngDto" 	id="scrinngDtoMap">
+		<id property="pblprfrId" 		column="pblprfr_id"/>
+		<id property="scrinngDt"   		column="scrinng_dt"/>
+		<id property="scrinngAt" 		column="scrinng_at"/>
+		<id property="useAbleSeatNum"	column="useable_seat_num"/>
+	</resultMap>
+	
+	
+	<select id="selectOne" resultMap="scrinngDtoMap" parameterType="scrinngDto">
+		SELECT * FROM SCRINNG
+		WHERE PBLPRFR_ID = #{pblprfrId} 
+		AND   SCRINNG_DT = #{scrinngDt}
+	</select>
+	
+	<update id="update" parameterType="scrinngDto">
+		UPDATE SCRINNG SET 
+		SCRINNG_AT       = #{scrinngAt},
+		USEABLE_SEAT_NUM = #{useAbleSeatNum}
+		WHERE PBLPRFR_ID = #{pblprfrId}
+		AND   SCRINNG_DT = #{scrinngDt}
+	</update>
+	
+	<insert id="insert" parameterType="scrinngDto">
+		INSERT INTO SCRINNG VALUES
+		(#{pblprfrId},#{scrinngDt},#{scrinngAt},#{useAbleSeatNum})
+	</insert>
+	
+</mapper>
+

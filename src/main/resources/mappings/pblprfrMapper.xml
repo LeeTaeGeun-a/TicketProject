@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.project.PblprfrDAO">
+<resultMap type="pblDto" id="pblDtoMap">
+		<id property="pblprfrId" 	column="pblprfr_id"/>
+		<id property="theatId"   	column="theat_id"/>
+		<id property="scrinngRmId" 	column="scrinng_room_id"/> 
+		<id property="pblNm" 		column="pblprfr_nm"/>
+		<id property="price" 		column="pblprfr_pc"/>
+		<id property="actor" 		column="pblprfr_person"/>
+	<!-- <id property="dirc" 		column="dirc"/> --> <!-- 같으면 생략가능 -->
+		<id property="runTime" 		column="reqre_time"/>
+		<id property="period" 		column="pblprfr_bgnde"/>
+		<id property="titleImgLc"	column="title_img_lc"/>
+		<id property="detailImgLc"	column="detail_img_lc"/>
+		<id property="pblprfrAt" 	column="pblprfr_at"/>
+		<id property="grade" 		column="viewng_grad"/>
+		<id property="totScore" 	column="tot_score"/>
+</resultMap>
+<select id="selectOne" resultMap="pblDtoMap" parameterType="String">
+		SELECT * FROM PBLPRFR
+	    WHERE PBLPRFR_ID = #{pblprfrId} 
+</select>
+
+<insert id="insert" parameterType="pblDto">
+		INSERT INTO PBLPRFR VALUES 
+		(#{pblprfrId},#{theatId},#{scrinngRmId},#{pblNm},#{price},#{actor},#{dirc},#{genre},#{runTime},#{period},#{grade},#{titleImgLc},#{detailImgLc},#{totScore},#{pblprfrAt} )
+</insert>
+	
+<update id="update" parameterType="pblDto">
+		UPDATE PBLPRFR SET 
+		THEAT_ID        = #{theatId},
+		SCRINNG_ROOM_ID = #{scrinngRmId},
+		PBLPRFR_NM      = #{pblNm},
+		PBLPRFR_PC		= #{price},
+		PBLPRFR_PERSON  = #{actor, jdbcType=VARCHAR},
+		DIRC			= #{dirc , jdbcType=VARCHAR},
+		REQRE_TIME		= #{runTime},
+		PBLPRFR_BGNDE	= #{period},
+		TITLE_IMG_LC	= #{titleImgLc, jdbcType=VARCHAR},
+		DETAIL_IMG_LC	= #{detailImgLc , jdbcType=VARCHAR},
+		PBLPRFR_AT		= #{pblprfrAt},
+		TOT_SCORE		= #{totScore},
+		GENRE			= #{genre}
+		WHERE PBLPRFR_ID = #{pblprfrId}
+		
+</update>	
+
+</mapper>
+

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.project.TheatDAO">
+	
+	<resultMap type="theatDto" 	id="theatDtoMap">
+		<id property="theatId" 		column="theat_id"/>
+		<id property="theatLoc"   	column="theat_lc"/>
+		<id property="theatNm" 		column="theat_nm"/>
+		<id property="theatTel" 	column="theat_tel"/>
+		<id property="bizQitAt" 	column="bizqit_at"/>
+	</resultMap>
+	
+	<select id="selectOne" resultMap="theatDtoMap" parameterType="String" >          
+      SELECT * FROM THEAT WHERE THEAT_ID = #{param1}         
+	</select>
+	
+	<insert id="insert" parameterType="theatDto">
+		INSERT INTO THEAT VALUES (#{theatId}, #{theatLoc}, #{theatNm}, #{theatTel}, #{bizQitAt} )
+	</insert>
+	
+	<update id="update" parameterType="theatDto">
+		UPDATE THEAT SET THEAT_LC = #{theatLoc}, THEAT_NM = #{theatNm}, THEAT_TEL = #{theatTel}, BIZQIT_AT = #{bizQitAt} WHERE THEAT_ID = #{theatId}
+	</update>	
+	
+
+</mapper>
+

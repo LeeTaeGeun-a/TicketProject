@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.project.NoticeBBSDAO">
+	
+	<resultMap type="noticeBBSDto" 	id="noticeBBSDtoMap">
+		<id property="noticeNo" 	column="notice_no"/>
+		<id property="mberId"   	column="mber_id"/>
+		<id property="noticeSj"     column="notice_sj"/>
+		<id property="registDt" 	column="regist_date"/>
+		<id property="content" 	    column="content"/>
+	</resultMap>
+	
+	<select id="selectOne" resultMap="noticeBBSDtoMap" parameterType="String" >          
+      SELECT * FROM NOTICE_BBS WHERE NOTICE_NO = #{param1}         
+	</select>
+	
+	<insert id="insert" parameterType="noticeBBSDto">
+		INSERT INTO NOTICE_BBS VALUES (#{noticeNo}, #{mberId}, #{noticeSj}, #{registDt}, #{content} )
+	</insert>
+	
+	<update id="update" parameterType="noticeBBSDto">
+		UPDATE NOTICE_BBS SET NOTICE_SJ = #{noticeSj}, REGIST_DATE = #{registDt}, CONTENT = #{content} WHERE NOTICE_NO = #{noticeNo}
+	</update>
+	
+	<delete id="delete" parameterType="String">
+	    DELETE FROM NOTICE_BBS WHERE NOTICE_NO = #{param1}  
+	</delete>	
+	
+</mapper>
+

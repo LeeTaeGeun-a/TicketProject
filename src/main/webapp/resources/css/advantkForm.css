@@ -1,0 +1,38 @@
+.info{
+	font-family: sans-serif;
+}
+
+#infoDiv td{
+	padding-bottom: 10px;
+}
+
+.ui-accordion-header-active{
+	background-color: #f8bc4e;
+	color: black;
+} 
+
+.advnInfoTitle{
+	font-size: 18px; 
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.advnInfoContent{
+	font-size: 14px;
+}
+
+.checkBox-wrap{
+	cursor: pointer;
+	
+}
+.checkBox-wrap .fa-couch{
+	display: inline-block;
+	color: #00b75b;
+}
+.checkBox-wrap input[type=checkbox]{
+	display: none;
+	
+}
+.checkBox-wrap input[type=checkbox]:checked + .fa-couch{
+	color: #ff4646;
+}

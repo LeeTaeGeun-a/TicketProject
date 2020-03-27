@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.project.ScrinngQebc">
+	
+	<resultMap type="scrinngDto" 	id="scrinngDtoMap">
+		<id property="pblprfrId" 		column="pblprfr_id"/>
+		<id property="scrinngDt"   		column="scrinng_dt"/>
+		<id property="scrinngAt" 		column="scrinng_at"/>
+		<id property="useAbleSeatNum"	column="useable_seat_num"/>
+	</resultMap>
+	
+	<resultMap type="scrinngJoinDto" 	id="scrinngJoinDtoMap">
+		<id property="pblprfrNm" 		column="pblprfr_nm"/>
+		<id property="theatNm" 		    column="theat_nm"/>
+		<id property="scrinngDt"   		column="scrinng_dt"/>
+	</resultMap>
+	
+	
+	<select id="selectForUser" resultMap="scrinngDtoMap" >
+		SELECT * FROM SCRINNG
+		WHERE PBLPRFR_ID = #{pblId} 
+		AND SCRINNG_AT = 'Y'
+	</select>
+	
+	<select id="selectForManage" resultMap="scrinngDtoMap" >
+		
+		<if test='startRow != null'>
+		SELECT * FROM (
+        SELECT ROWNUM RNUM , O.* FROM(
+        </if>
+		SELECT * FROM SCRINNG
+		WHERE PBLPRFR_ID = #{pblId}
+		<if test='searchDate != "all"'>
+		AND   SCRINNG_DT LIKE #{searchDate} 
+		</if>
+		ORDER BY SCRINNG_DT DESC ,SCRINNG_AT DESC 
+		<if test='startRow != null'>
+<![CDATA[	  
+        ) O 
+		)
+		WHERE RNUM   >= #{startRow}
+		AND   ROWNUM <= #{maxSize}
+	]]>  	
+		</if>
+	</select>
+	
+	<select id="selectForClose" resultMap="scrinngDtoMap">
+		SELECT *
+		FROM   SCRINNG
+		WHERE  TO_DATE(SCRINNG_DT,'YYYY.MM.DD/HH24.mi') &lt; TO_DATE('${nowTime}','YYYY.MM.DD/HH24.mi')
+		AND    SCRINNG_AT = 'Y'
+	</select>
+
+	<select id="getMinDate" resultType="String">
+		SELECT MIN(SCRINNG_DT) FROM SCRINNG
+		WHERE PBLPRFR_ID = #{pblId} 
+		AND SCRINNG_AT = 'Y'
+	</select>
+	
+	<select id="getMaxDate" resultType="String">
+		SELECT MAX(SCRINNG_DT) FROM SCRINNG
+		WHERE PBLPRFR_ID = #{pblId} 
+		AND SCRINNG_AT = 'Y'
+	</select>
+	
+	<select id="selectForMng" resultMap="scrinngJoinDtoMap">
+	    SELECT B.PBLPRFR_NM ,C.THEAT_NM, A.SCRINNG_DT  FROM SCRINNG A, PBLPRFR B, THEAT C
+        WHERE A.PBLPRFR_ID = B.PBLPRFR_ID
+        AND   B.THEAT_ID = C.THEAT_ID
+        <![CDATA[	
+        AND   A.SCRINNG_DT < #{crtTime} 
+        	]]> 
+        AND   A.SCRINNG_AT = 'Y'
+        ORDER BY A.SCRINNG_DT DESC
+	</select>
+	
+
+</mapper>
+

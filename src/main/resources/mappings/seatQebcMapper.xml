@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.project.SeatQebc">
+	
+	<resultMap type="seatDto" 	id="seatDtoMap">
+	
+		<id property="theatId" 	    column="theat_id"/>
+		<id property="scrRmId"      column="scrinng_room_id"/>
+		<id property="seatNo"       column="seat_no"/>
+		<id property="seatRow"      column="seat_row"/>
+		<id property="seatCol"      column="seat_col"/>
+		<id property="usefulAt"     column="useful_at"/>
+		
+	</resultMap>
+	
+	<select id="selectUseY" resultMap="seatDtoMap">          
+      SELECT * FROM SEAT 
+      WHERE THEAT_ID 		= #{theatId}
+      AND   SCRINNG_ROOM_ID = #{scrRmId}
+      AND	USEFUL_AT 		= 'Y'          
+	</select>
+	
+	<select id="selectAll" resultMap="seatDtoMap" parameterType="seatDto">          
+      SELECT * FROM SEAT 
+      WHERE THEAT_ID = #{theatId} 
+      AND SCRINNG_ROOM_ID = #{scrRmId} 
+      ORDER BY TO_NUMBER(SEAT_ROW),TO_NUMBER(SEAT_COL)
+	</select>
+	
+
+</mapper>
+

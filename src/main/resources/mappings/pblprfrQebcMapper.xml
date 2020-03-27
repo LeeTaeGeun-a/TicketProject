@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.project.PblprfrQebc">
+	
+	<resultMap type="pblJoinDto" id="pblJoinDtoMap">
+		<id property="pblprfrId" 	column="pblprfr_id"/>
+		<id property="theatId"   	column="theat_id"/>
+		<id property="scrinngRmId" 	column="scrinng_room_Id"/>
+		<id property="pblNm" 		column="pblprfr_nm"/>
+		<id property="price" 		column="pblprfr_pc"/>
+		<id property="actor" 		column="pblprfr_person"/>
+		<id property="runTime" 		column="reqre_time"/>
+		<id property="period" 		column="pblprfr_bgnde"/>
+		<id property="titleImgLc"	column="title_img_lc"/>
+		<id property="detailImgLc"	column="detail_img_lc"/>
+		<id property="pblprfrAt" 	column="pblprfr_at"/>
+		<id property="grade" 		column="viewng_grad"/>
+		<id property="totScore" 	column="tot_score"/>
+		<!-- 극장 정보 -->
+		<id property="theatName" 	column="theat_nm"/>
+		<id property="theatLoc" 	column="theat_lc"/>
+		<id property="theatTel" 	column="theat_tel"/>
+	</resultMap>
+	
+	<resultMap type="pblDto" id="pblDtoMap">
+		<id property="pblprfrId" 	column="pblprfr_id"/>
+		<id property="theatId"   	column="theat_id"/>
+		<id property="scrinngRmId" 	column="scrinng_room_id"/> 
+		<id property="pblNm" 		column="pblprfr_nm"/>
+		<id property="price" 		column="pblprfr_pc"/>
+		<id property="actor" 		column="pblprfr_person"/>
+		<id property="runTime" 		column="reqre_time"/>
+		<id property="period" 		column="pblprfr_bgnde"/>
+		<id property="titleImgLc"	column="title_img_lc"/>
+		<id property="detailImgLc"	column="detail_img_lc"/>
+		<id property="pblprfrAt" 	column="pblprfr_at"/>
+		<id property="grade" 		column="viewng_grad"/>
+		<id property="totScore" 	column="tot_score"/>
+	</resultMap>
+
+	<select id="selectForRank" resultMap="pblJoinDtoMap" parameterType="int"  >     
+	 
+		  SELECT * FROM (
+          SELECT ROWNUM RNUM , O.* FROM(
+		  SELECT DISTINCT P.* , T.THEAT_NM, T.THEAT_LC, T.THEAT_TEL, T.BIZQIT_AT 
+		  FROM PBLPRFR P , THEAT T , SCRINNG S
+		  WHERE P.THEAT_ID = T.THEAT_ID
+		  AND   P.PBLPRFR_Id = S.PBLPRFR_ID
+		  AND   P.PBLPRFR_AT = 'Y'
+		  AND   S.SCRINNG_AT = 'Y'
+		  ORDER BY P.TOT_SCORE DESC
+	<![CDATA[	  
+          ) O 
+		  )
+		  WHERE RNUM   >= 1
+		  AND   ROWNUM <= #{maxSize}
+	]]>  	  
+	</select>
+	
+	<select id="selectForAdvanktkRank" resultMap="pblJoinDtoMap" parameterType="int"  >     
+	 
+		  SELECT * FROM (
+          SELECT ROWNUM RNUM , O.* FROM(
+		  SELECT DISTINCT P.* , T.THEAT_NM, T.THEAT_LC, T.THEAT_TEL, T.BIZQIT_AT ,SUBQUERY.ADVANTKNUM
+		  FROM PBLPRFR P , THEAT T , SCRINNG S, 
+		  (SELECT PBLPRFR_ID, COUNT(PBLPRFR_ID) ADVANTKNUM
+		  FROM ADVANTK A
+		  GROUP BY PBLPRFR_ID) SUBQUERY
+		  WHERE P.THEAT_ID = T.THEAT_ID
+		  AND   P.PBLPRFR_ID = SUBQUERY.PBLPRFR_ID
+		  AND   P.PBLPRFR_Id = S.PBLPRFR_ID
+		  AND   P.PBLPRFR_AT = 'Y'
+		  AND   S.SCRINNG_AT = 'Y'
+		  ORDER BY SUBQUERY.ADVANTKNUM DESC
+	<![CDATA[	  
+          ) O 
+		  )
+		  WHERE RNUM   >= 1
+		  AND   ROWNUM <= #{maxSize}
+	]]>  	  
+	</select>
+	
+	<select id="selectForRecomend" resultMap="pblJoinDtoMap">     
+	
+		  SELECT * FROM (
+          SELECT ROWNUM RNUM , O.* FROM(
+		  SELECT DISTINCT P.* , T.THEAT_NM, T.THEAT_LC, T.THEAT_TEL, T.BIZQIT_AT 
+		  FROM PBLPRFR P , THEAT T , SCRINNG S
+		  WHERE P.THEAT_ID = T.THEAT_ID
+		  AND   P.PBLPRFR_Id = S.PBLPRFR_ID
+		  AND   S.SCRINNG_AT = 'Y'
+		  AND   P.PBLPRFR_AT = 'Y'
+		  AND P.THEAT_ID = #{theatId}
+		  ORDER BY P.TOT_SCORE
+	<![CDATA[ 	  
+          ) O 
+		  )
+		  WHERE RNUM   >= 1
+		  AND   ROWNUM <= #{maxSize}
+	]]>  	  
+	</select>
+	
+	<select id="selectList" resultMap="pblJoinDtoMap" >
+		
+		<if test='startRow != null'>
+		SELECT * FROM (
+        SELECT ROWNUM RNUM , O.* FROM(
+        </if>
+		SELECT DISTINCT P.*,T.THEAT_NM, T.THEAT_LC, T.THEAT_TEL, T.BIZQIT_AT
+		FROM PBLPRFR P , THEAT T , SCRINNG S
+		WHERE P.THEAT_ID = T.THEAT_ID
+		AND   P.PBLPRFR_Id = S.PBLPRFR_ID
+		AND   P.PBLPRFR_AT = 'Y'
+		AND   S.SCRINNG_AT = 'Y'
+		<if test='date != "all"'>
+		AND   S.SCRINNG_DT LIKE #{date}
+		</if>
+		<if test='area == "etc"'>
+		AND T.THEAT_LC NOT LIKE '경기%'
+		AND T.THEAT_LC NOT LIKE '서울%'
+		AND T.THEAT_LC NOT LIKE '충청%'
+		AND T.THEAT_LC NOT LIKE '대전%'
+		AND T.THEAT_LC NOT LIKE '경상%'
+		AND T.THEAT_LC NOT LIKE '대구%'
+		AND T.THEAT_LC NOT LIKE '부산%'
+		AND T.THEAT_LC NOT LIKE '전라%'
+		AND T.THEAT_LC NOT LIKE '광주%'
+		AND T.THEAT_LC NOT LIKE '전주%'
+		</if>
+		<if test='area != "all" and area != "etc"'>
+		AND( 
+		<foreach collection="areaList" item="alist" separator="OR">
+		T.THEAT_LC LIKE #{alist}
+		</foreach>
+		)
+		</if>
+		<if test='genre != "all"'>
+		AND   P.GENRE = #{genre}
+		</if>
+		<!-- 검색창에서 사용하는거 -->
+		<if test='sWord != "all"'>
+		AND
+		(
+		 	P.PBLPRFR_NM LIKE #{sWord}
+		 OR P.GENRE		 LIKE #{sWord}
+		 OR T.THEAT_NM   LIKE #{sWord}
+		 OR T.THEAT_LC   LIKE #{sWord}
+		)
+		</if>
+		<if test='startRow != null'>
+<![CDATA[ 	
+		)O 
+		)
+		WHERE RNUM   >= #{startRow}
+	    AND   ROWNUM <= #{maxSize}
+    ]]> 
+    	</if>
+	</select>
+	
+	<select id="selectJoinOne" resultMap="pblJoinDtoMap" parameterType="String">
+		SELECT P.*, T.THEAT_NM, T.THEAT_LC, T.THEAT_TEL, T.BIZQIT_AT 
+		FROM PBLPRFR P , THEAT T 
+	    WHERE P.THEAT_ID = T.THEAT_ID 
+	    AND P.PBLPRFR_ID = #{PBLPRFRID} 
+	</select>
+	
+	<select id="selectForManage" resultMap="pblJoinDtoMap">
+	<if test='startRow != null'>
+		  SELECT * FROM (
+          SELECT ROWNUM RNUM , O.* FROM(
+    </if>
+		  SELECT DISTINCT P.* , T.THEAT_NM, T.THEAT_LC, T.THEAT_TEL, T.BIZQIT_AT 
+		  FROM PBLPRFR P , THEAT T
+		  WHERE P.THEAT_ID = T.THEAT_ID
+	<if test='sWord != "all"'>
+		  AND
+		  (
+		    	P.PBLPRFR_NM 		LIKE #{sWord}
+		        OR P.GENRE			LIKE #{sWord}
+		        OR T.THEAT_NM   	LIKE #{sWord}
+		        OR T.THEAT_LC		LIKE #{sWord}
+		 		OR P.PBLPRFR_ID 	LIKE #{sWord}
+     	  )
+    </if>
+    	  ORDER BY P.PBLPRFR_ID	  
+    <if test='startRow != null'>
+	<![CDATA[ 	  
+          ) O 
+		  )
+		  WHERE RNUM   >= #{startRow}
+		  AND   ROWNUM <= #{maxSize}
+	]]>  	
+	</if>  
+	</select> 
+	
+    <select id="maxNum" resultType="String"> 
+	 	SELECT MAX(to_number(PBLPRFR_ID)) FROM PBLPRFR
+	</select>
+	
+	<select id="selectInstPblInfo" resultMap="pblDtoMap">
+		<if test='startRow != null'>
+		SELECT * FROM (
+        SELECT ROWNUM RNUM , O.* FROM(
+        </if>
+		SELECT P.* 
+		FROM  PBLPRFR P ,  INTRST_LIST I
+		WHERE P.PBLPRFR_ID = I.PBLPRFR_ID
+		AND	  I.MBER_ID    = #{mberId}
+		<if test='startRow != null'>
+<![CDATA[	  
+        ) O 
+		)
+		WHERE RNUM   >= #{startRow}
+		AND   ROWNUM <= #{maxSize}
+	]]>  	
+		</if>
+	</select>
+	
+	<select id="selectForClose" resultMap="pblDtoMap">
+		SELECT *
+		FROM   PBLPRFR
+		WHERE  TO_DATE(SUBSTR(PBLPRFR_BGNDE,12),'YYYY.MM.DD') &lt; TO_DATE('${nowTime}','YYYY.MM.DD')
+		AND    PBLPRFR_AT = 'Y'
+	</select>
+
+</mapper>
+

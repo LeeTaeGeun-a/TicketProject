@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.project.MberDAO">
+
+	<resultMap type="mbrDto" id="mberDtoMap">
+		<id property="mberId" 		column="mber_id"/>
+		<id property="mberPw"   	column="mber_password"/>
+		<id property="mberNm" 		column="mber_nm"/>
+		<id property="mberEmail" 	column="mber_email"/>
+		<id property="mberTel" 		column="mber_tel"/>
+		<id property="mberAddr" 	column="mber_addr"/>
+		<id property="mberLevel" 	column="mber_level"/>
+		<id property="mberAt" 		column="mber_at"/>
+	</resultMap>
+
+	<select id="selectOne" resultMap="mberDtoMap">
+		SELECT * FROM MBER 
+		WHERE MBER_ID = #{mberId}
+		AND   MBER_AT = 'Y'
+	</select>
+	<select id="selectOneAll" resultMap="mberDtoMap">
+		SELECT * FROM MBER 
+		WHERE MBER_ID = #{mberId}
+	</select>
+	
+	<insert id="insert" parameterType="mbrDto">
+		INSERT INTO MBER VALUES 
+		(#{mberId},#{mberPw},#{mberNm},#{mberEmail},#{mberTel},#{mberLevel},#{mberAt})
+	</insert>
+	<update id="update" parameterType="mbrDto">
+		UPDATE MBER SET
+		 MBER_PASSWORD = #{mberPw}
+		,MBER_NM       = #{mberNm}
+		,MBER_EMAIL    = #{mberEmail}
+		,MBER_TEL      = #{mberTel}
+		,MBER_LEVEL    = #{mberLevel}
+		,MBER_AT       = #{mberAt}
+		WHERE MBER_ID  = #{mberId}
+	</update>
+
+	
+
+
+</mapper>

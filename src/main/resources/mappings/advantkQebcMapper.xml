@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.project.AdvantkQebc">
+	<resultMap type="advantkDto" id="advantkDtoMap">
+		<id property="advantkId" 		column="advantk_id"/>
+		<id property="mberId"   		column="mber_id"/>
+		<id property="pblprfrId" 		column="pblprfr_id"/>
+		<id property="scrinngDt" 		column="scrinng_dt"/>
+		<id property="advantkDt" 		column="advantk_dt"/>
+		<id property="advantkSeats"		column="advantk_seats"/>
+		<id property="advantkNmrs"		column="advantk_nmrs"/>
+		<id property="purchsPc" 		column="purchs_pc"/>
+		<id property="purchsMn" 		column="purchs_mn"/>
+		<id property="viewPsNm"         column="viewing_person_nm"/>
+		<id property="viewPsTel"		column="viewing_person_tel"/>
+		<id property="viewPsEmail"		column="viewing_person_email"/>
+		<id property="advantkSt" 		column="advantk_st"/>
+	</resultMap>
+	
+	<resultMap type="advantkJoinDto"    id="advantkJoinDtoMap">
+		<id property="advantkId" 		column="advantk_id"/>
+		<id property="mberId"   		column="mber_id"/>
+		<id property="pblprfrId" 		column="pblprfr_id"/>
+		<id property="scrinngDt" 		column="scrinng_dt"/>
+		<id property="advantkDt" 		column="advantk_dt"/>
+		<id property="advantkSeats"		column="advantk_seats"/>
+		<id property="advantkNmrs"		column="advantk_nmrs"/>
+		<id property="purchsPc" 		column="purchs_pc"/>
+		<id property="purchsMn" 		column="purchs_mn"/>
+		<id property="viewPsNm"         column="viewing_person_nm"/>
+		<id property="viewPsTel"		column="viewing_person_tel"/>
+		<id property="viewPsEmail"		column="viewing_person_email"/>
+		<id property="advantkSt" 		column="advantk_st"/>
+		<!-- 공연 정보 -->
+		<id property="pblprfrNm"		column="pblprfr_nm"/>
+	</resultMap>
+	
+<!-- 	<select id="data4myPage" resultMap="advantkDtoMap">
+<![CDATA[ 
+	SELECT * FROM (SELECT O.*,ROWNUM RNUM
+					FROM(SELECT *
+					FROM ADVANTK
+					WHERE MBER_ID = #{param1}
+					AND ADVANTK_AT = 'Y'
+					ORDER BY SCRINNG_DT DESC
+						) O
+					)
+	WHERE RNUM >= #{param2} 
+	AND RNUM <= #{param3} 
+	]]>  
+	</select> -->
+	
+	<select id="selectForUser" resultMap="advantkJoinDtoMap">
+	<if test='startRow != null'>
+		SELECT * FROM (
+        SELECT ROWNUM RNUM , O.* FROM(
+    </if>
+		SELECT A.*, P.PBLPRFR_NM
+		FROM   ADVANTK A ,  PBLPRFR P
+		WHERE  A.PBLPRFR_ID = P.PBLPRFR_ID
+		AND	   A.MBER_ID    = #{mberId}
+		ORDER BY ADVANTK_DT DESC
+	<if test='startRow != null'>
+		<![CDATA[	  
+        ) O 
+		)
+		WHERE RNUM   >= #{startRow}
+		AND   ROWNUM <= #{maxSize}
+		]]>  	
+	</if>
+	</select>
+	
+	<select id="selectForAdmin" resultMap="advantkJoinDtoMap">
+	<if test='startRow != null'>
+		SELECT * FROM (
+        SELECT ROWNUM RNUM , O.* FROM(
+    </if>
+		SELECT A.*, P.PBLPRFR_NM
+		FROM   ADVANTK A ,  PBLPRFR P
+		WHERE  A.PBLPRFR_ID = P.PBLPRFR_ID
+	<if test='condition == "advId"'>
+		AND    A.ADVANTK_ID = #{sWord}
+	</if>	
+	<if test='condition == "mberId"'>
+		AND    A.MBER_ID = #{sWord}
+	</if>
+	<if test='condition == "period"'>
+		AND    A.SCRINNG_DT LIKE #{sWord}
+	</if>
+	<if test='condition == "state"'>
+		AND    A.ADVANTK_ST = #{sWord}
+	</if>
+		ORDER BY ADVANTK_DT DESC
+	<if test='startRow != null'>
+		<![CDATA[	  
+        ) O 
+		)
+		WHERE RNUM   >= #{startRow}
+		AND   ROWNUM <= #{maxSize}
+		]]>  	
+	</if>
+	</select>
+	
+	<select id="selectForCancle" resultMap="advantkDtoMap">
+		SELECT *
+		FROM   ADVANTK
+		WHERE  PBLPRFR_ID = #{pblprfrId}
+	<if test='scrinngDt != null'>
+		AND    SCRINNG_DT = #{scrinngDt}
+	</if>	
+	</select>
+	
+	<select id="selectForClose" resultMap="advantkDtoMap">
+		SELECT *
+		FROM   ADVANTK
+		WHERE  TO_DATE(SCRINNG_DT,'YYYY.MM.DD/HH24.mi') &lt; TO_DATE('${nowTime}','YYYY.MM.DD/HH24.mi')
+		AND    ADVANTK_ST = 'F'
+	</select>
+	
+	
+	<select id="getMaxAdvantkId" resultType="String">
+		SELECT MAX(TO_NUMBER(ADVANTK_ID)) FROM ADVANTK
+	</select>
+	
+	<select id="selectForMng" resultMap="advantkJoinDtoMap">
+	    select * from(
+	    SELECT ROWNUM RNUM ,A.*, P.PBLPRFR_NM
+		FROM   ADVANTK A ,  PBLPRFR P
+		WHERE  A.PBLPRFR_ID = P.PBLPRFR_ID
+		ORDER BY  to_number(a.ADVANTK_ID)  DESC )
+        <![CDATA[	
+        where rnum >= 1
+        and rownum <= 5
+        ]]>
+	</select>
+
+</mapper>

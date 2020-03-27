@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.project.AdvantkDAO">
+	<resultMap type="advantkDto" id="advantkDtoMap">
+		<id property="advantkId" 		column="advantk_id"/>
+		<id property="mberId"   		column="mber_id"/>
+		<id property="pblprfrId" 		column="pblprfr_id"/>
+		<id property="scrinngDt" 		column="scrinng_dt"/>
+		<id property="advantkDt" 		column="advantk_dt"/>
+		<id property="advantkSeats"		column="advantk_seats"/>
+		<id property="advantkNmrs"		column="advantk_nmrs"/>
+		<id property="purchsPc" 		column="purchs_pc"/>
+		<id property="purchsMn" 		column="purchs_mn"/>
+		<id property="viewPsNm"         column="viewing_person_nm"/>
+		<id property="viewPsTel"		column="viewing_person_tel"/>
+		<id property="viewPsEmail"		column="viewing_person_email"/>
+		<id property="advantkSt" 		column="advantk_st"/>
+	</resultMap>
+
+<select id="selectOne" resultMap="advantkDtoMap">
+	SELECT * FROM ADVANTK
+	WHERE ADVANTK_ID = #{advantkId}
+</select>
+
+<insert id="insert">
+	INSERT INTO ADVANTK
+	VALUES
+	(
+		#{advantkId}	, 
+		#{mberId} 		,
+		#{pblprfrId}	,
+		#{scrinngDt}	,
+		#{advantkDt}	,
+		#{advantkSeats} ,
+		#{advantkNmrs}	,
+		#{purchsPc}		,
+		#{purchsMn}		,
+		#{viewPsNm}		,
+		#{viewPsTel}	,
+		#{viewPsEmail}	,
+		#{advantkSt}	
+	)
+</insert>
+
+<update id="update">
+	UPDATE ADVANTK SET
+	MBER_ID				= #{mberId},
+	PBLPRFR_ID      	= #{pblprfrId},
+	SCRINNG_DT			= #{scrinngDt},
+	ADVANTK_SEATS 		= #{advantkSeats},
+	ADVANTK_NMRS		= #{advantkNmrs},
+	PURCHS_PC			= #{purchsPc},
+	PURCHS_MN			= #{purchsMn},
+	VIEWING_PERSON_NM	= #{viewPsNm},
+	VIEWING_PERSON_TEL	= #{viewPsTel},
+	VIEWING_PERSON_EMAIL= #{viewPsEmail},
+	ADVANTK_ST			= #{advantkSt}
+	WHERE ADVANTK_ID	= #{advantkId}
+</update>
+
+
+
+</mapper>

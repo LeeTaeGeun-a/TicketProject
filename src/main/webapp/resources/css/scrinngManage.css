@@ -1,0 +1,20 @@
+.main_container{ 
+ position:static; 
+  top:0px; 
+  /* border:lpx dotted red; */   
+} 
+#addTimeBtn1:hover {
+	color: red;
+} 
+
+#addTimeBtn2:hover {
+	color: red;
+}
+
+#deleteTimeBtn1:hover {
+	color: red;
+} 
+
+#deleteTimeBtn2:hover {
+	color: red;
+}

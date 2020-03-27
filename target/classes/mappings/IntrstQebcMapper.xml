@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.project.IntrstQebc">
+
+	<resultMap type="intrstDto" id="intrstDtoMap">
+		<id property="mberId" 		column="mber_id"/>
+		<id property="pblprfrId"	column="pblprfr_id"/>
+	</resultMap>
+	<resultMap type="intrstJoinDto" id="intrstJoinDtoMap">
+		<id property="mberId" 		column="mber_id"/>
+		<id property="pblprfrId"	column="pblprfr_id"/>
+		<id property="pblprfrNm"	column="pblprfr_nm"/>
+		<id property="pblprfrBgnde"	column="pblprfr_bgnde"/>
+	</resultMap>
+	
+	<select id="selectForUser" resultMap="intrstJoinDtoMap">
+		<if test='startRow != null'>
+			SELECT * FROM (
+        	SELECT ROWNUM RNUM , O.* FROM(
+        </if>
+				SELECT I.*, P.PBLPRFR_NM,PBLPRFR_BGNDE
+				FROM   INTRST_LIST I,  PBLPRFR P
+				WHERE  I.PBLPRFR_ID = P.PBLPRFR_ID
+				AND	   I.MBER_ID    = #{mberId}
+				ORDER BY PBLPRFR_BGNDE DESC
+
+		<if test='startRow != null'>		
+		<![CDATA[ 
+					) O
+				)
+		WHERE RNUM >= #{startRow}
+		AND RNUM <= #{maxSize} 
+		]]> 
+		</if> 
+		</select>
+	
+	
+</mapper>

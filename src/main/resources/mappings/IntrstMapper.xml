@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.project.IntrstDAO">
+
+	<resultMap type="intrstDto" id="intrstDtoMap">
+		<id property="mberId" 		column="mber_id"/>
+		<id property="pblprfrId"	column="pblprfr_id"/>
+	</resultMap>
+
+	<select id="selectOne" resultMap="intrstDtoMap">
+		SELECT * FROM INTRST_LIST 
+		WHERE MBER_ID 		= #{mberId}
+		AND   PBLPRFR_ID 	= #{pblprfrId}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO INTRST_LIST VALUES
+		(#{mberId},#{pblprfrId})
+	</insert>
+	
+	<delete id="delete">
+		DELETE FROM INTRST_LIST
+		WHERE MBER_ID 	 = #{mberId}
+		AND   PBLPRFR_ID = #{pblprfrId} 
+	</delete>
+	
+
+</mapper>

@@ -1,0 +1,44 @@
+#thebody{
+	margin-top: 50px;
+}
+
+.card{
+	width : 250px;
+	float : none; 
+	margin: 0 auto;"
+	
+}
+.card:hover{
+	
+	border: solid 3px;
+	border-color: red;
+	
+}
+
+.homeLink ,.homeLink:hover {
+	text-decoration: none;
+	color : black;
+}
+
+.rankNm {
+	text-decoration:none;
+	color: black;
+}
+
+.rankNm:hover {
+	color: red;
+	text-decoration: none;
+}
+
+#subMenu a{
+	color: #fcf4f3;
+}
+
+#subMenu a:hover {
+	color: #ef4318;
+}
+
+.modal-dialog {
+    width: 400px;
+}
+

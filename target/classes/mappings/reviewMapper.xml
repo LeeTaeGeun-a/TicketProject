@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.project.ReviewDAO">
+
+	<resultMap type="reviewDto" id="reviewDtoMap">
+		<id property="pblprfrId"	column="pblprfr_id"/>
+		<id property="registDt"		column="regist_date"/>
+		<id property="mberId" 		column="mber_id"/>
+		<id property="content"		column="content"/>
+		<id property="score"		column="score"/>
+	</resultMap>
+
+	<select id="selectOne" resultMap="reviewDtoMap">
+		SELECT * FROM PBLPRFR_EVL_BBS
+		WHERE  PBLPRFR_ID 	= #{pblprfrId}
+		AND	   REGIST_DATE  = #{registDt}
+		AND    MBER_ID 		= #{mberId}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO PBLPRFR_EVL_BBS VALUES
+		(
+			#{pblprfrId},
+			#{mberId},
+			#{registDt},
+			#{content},
+			#{score}
+		)
+	</insert>
+	
+	<delete id="delete">
+		DELETE FROM PBLPRFR_EVL_BBS
+		WHERE MBER_ID 	 = #{mberId}
+		AND   PBLPRFR_ID = #{pblprfrId}
+		AND   REGIST_DATE= #{registDt} 
+	</delete> 
+	
+
+</mapper>

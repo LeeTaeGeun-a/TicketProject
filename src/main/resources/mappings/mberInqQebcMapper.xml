@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.project.MberInqQebc">
+	<resultMap type="mberInqDto" id="inqDtoMap">
+		<id property="mberId"   	column="mber_id" />
+		<id property="inqryNo" 		column="inqry_no" />
+		<id property="inqrySj" 		column="inqry_sj" />
+		<id property="registDate" 	column="regist_date" />
+		<id property="refrnNo" 		column="refrn_no" />
+		<id property="reStep" 		column="re_step" />
+		<id property="answerAt" 	column="answer_at" />
+		<id property="content" 		column="content" />
+	</resultMap>
+
+	<resultMap type="mberInqJoinDto" id="inqJoinDtoMap">
+		<id property="mberId" 		column="mber_id" />
+		<id property="inqryNo" 		column="inqry_no" />
+		<id property="inqrySj" 		column="inqry_sj" />
+		<id property="registDate" 	column="regist_date" />
+		<id property="refrnNo" 		column="refrn_no" />
+		<id property="reStep" 		column="re_step" />
+		<id property="answerAt" 	column="answer_at" />
+		<id property="content" 		column="content" />
+		<id property="mberId" 		column="mber_id" />
+		<id property="mberPw" 		column="mber_password" />
+		<id property="mberNm" 		column="mber_nm" />
+		<id property="mberEmail" 	column="mber_email" />
+		<id property="mberTel" 		column="mber_tel" />
+		<id property="mberAddr" 	column="mber_addr" />
+		<id property="mberLevel" 	column="mber_level" />
+		<id property="mberAt" 		column="mber_at" />
+	</resultMap>
+	<select id="selectForUser" resultMap="inqDtoMap">
+		<if test='startRow != null'>
+			SELECT * FROM (
+			SELECT ROWNUM RNUM , O.* FROM(
+		</if>
+		SELECT * FROM MBER_INQRY_BBS
+		WHERE MBER_ID = #{mberId}
+		AND INQRY_NO = REFRN_NO
+		ORDER BY REGIST_DATE DESC
+		<if test='startRow != null'>		
+			<![CDATA[ 
+					) O
+				)
+			WHERE RNUM >= #{startRow}
+			AND RNUM <= #{maxSize} 
+			]]>
+		</if>
+	</select>
+	<select id="mberInqSelect" resultMap="inqDtoMap">
+
+		SELECT * FROM MBER_INQRY_BBS
+		WHERE (MBER_ID = #{mberId}
+		AND INQRY_NO = #{inqryNo})
+		OR REFRN_NO = #{refrnNo}
+		ORDER BY RE_STEP
+
+	</select>
+	<select id="mngInqAnswerAtSelect" resultMap="inqDtoMap">
+		<if test='startRow != null'>
+			SELECT * FROM (
+			SELECT ROWNUM RNUM , O.* FROM(
+		</if>
+		SELECT * FROM MBER_INQRY_BBS
+		WHERE ANSWER_AT = #{answerAt}
+		AND INQRY_NO = REFRN_NO
+		ORDER BY REGIST_DATE DESC
+		<if test='startRow != null'>		
+			<![CDATA[ 
+					) O
+				)
+			WHERE RNUM >= #{startRow}
+			AND RNUM <= #{maxSize} 
+			]]>
+		</if>
+	</select>
+	<select id="mngInqIdSelect" resultMap="inqDtoMap">
+		<if test='startRow != null'>
+			SELECT * FROM (
+			SELECT ROWNUM RNUM , O.* FROM(
+		</if>
+		SELECT * FROM MBER_INQRY_BBS
+		WHERE MBER_ID LIKE #{mberId}
+		AND INQRY_NO = REFRN_NO
+		ORDER BY REGIST_DATE DESC
+		<if test='startRow != null'>		
+			<![CDATA[ 
+					) O
+				)
+			WHERE RNUM >= #{startRow}
+			AND RNUM <= #{maxSize} 
+			]]>
+		</if>
+	</select>
+	<select id="mngInqSelectAll" resultMap="inqDtoMap">
+			<![CDATA[ 
+			SELECT * FROM (
+        	SELECT ROWNUM RNUM , O.* FROM(
+	 				SELECT * FROM MBER_INQRY_BBS
+					WHERE INQRY_NO = REFRN_NO
+					ORDER BY REGIST_DATE DESC		
+
+					) O
+				)
+			WHERE RNUM >= #{startRow}
+			AND RNUM <= #{maxSize} 
+			]]>
+	</select>
+	<select id="countInq" resultType="int">
+		SELECT COUNT(INQRY_NO) FROM MBER_INQRY_BBS
+	</select>
+	<select id="getMaxNum" resultType="String">
+		SELECT MAX(TO_NUMBER(INQRY_NO)) FROM MBER_INQRY_BBS
+	</select>
+	<select id="inqAnswerForMng" resultMap="inqJoinDtoMap">
+		SELECT * FROM MBER M,MBER_INQRY_BBS B
+		WHERE M.MBER_ID = B.MBER_ID
+		AND B.INQRY_NO = #{param1}
+	</select>
+	<select id="answerFind" resultMap="inqDtoMap">
+		SELECT * FROM MBER_INQRY_BBS
+		WHERE INQRY_NO != REFRN_NO
+		AND REFRN_NO = #{param1}
+	</select>
+	
+	<select id="selectForMng" resultMap="inqDtoMap">
+	    SELECT * FROM MBER_INQRY_BBS
+	    WHERE answer_at = 'N'
+	</select>
+</mapper>

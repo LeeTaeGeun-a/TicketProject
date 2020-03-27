@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.project.ScrinngRmQebc">
+	
+	<resultMap type="scrinngRmDto" 	id="scrinngRmDtoMap">
+		<id property="theatId" 			column="theat_id"/>
+		<id property="scrRmId"   		column="scrinng_room_id"/>
+		<id property="scrRmNm"   		column="scrinng_room_nm"/>
+		<id property="totSeat" 			column="tot_seat"/>
+		<id property="clsAt"			column="cls_at"/>
+	</resultMap>
+	
+	<resultMap type="scrRmJoinDto" 	id="ScrRmJoinDtoMap">
+
+		<id property="theatNm"      column="theat_nm"/>
+		<id property="theatId" 	    column="theat_id"/>
+		<id property="scrRmId"   	column="scrinng_room_id"/>
+		<id property="scrRmNm"      column="scrinng_room_nm"/>
+		<id property="clsAt"        column="cls_at"/>
+		<id property="totSeat"      column="tot_seat"/>
+		
+	</resultMap>
+	
+	<select id="selectOpnngAll" resultMap="scrinngRmDtoMap"  parameterType="String">
+		SELECT * FROM SCRINNG_ROOM
+		WHERE THEAT_ID = #{theatId} 
+		AND CLS_AT = 'Y'
+	</select>
+	
+	<select id="selectAll" resultMap="scrinngRmDtoMap">          
+      SELECT * FROM SCRINNG_ROOM 
+	</select>
+	
+    <select id="selectJoinAll" resultMap="ScrRmJoinDtoMap" parameterType="String">          
+      SELECT THEAT_NM, SCRINNG_ROOM_NM, SCRINNG_ROOM.*
+      FROM   THEAT, SCRINNG_ROOM
+      WHERE  THEAT.THEAT_ID = SCRINNG_ROOM.THEAT_ID
+      AND    SCRINNG_ROOM.THEAT_ID = #{theatId}
+      ORDER BY  SCRINNG_ROOM.CLS_AT DESC
+	</select>
+	
+	<select id="maxNum" resultType="String" parameterType="String"> 
+      select max(to_number(scrinng_room_id)) from scrinng_room where theat_id = #{theatId}
+    </select>
+	
+</mapper>
+
