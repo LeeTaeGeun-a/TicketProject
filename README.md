@@ -36,4 +36,5 @@
 <h4>-주요담당 화면 및 기능</h4>
 <h6>*화면*</h6>
 <img src="https://user-images.githubusercontent.com/62685492/77767867-08462f00-7085-11ea-8cd9-b2913044284c.PNG">
-<h6>*관련중요코드*</h6>
+<h6>*관련중요코드 경로*</h6>
+TicketProject/src/main/java/com/spring/project/
