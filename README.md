@@ -18,118 +18,22 @@
 <img src="https://user-images.githubusercontent.com/62685492/77764322-d383a900-707f-11ea-98b3-476da8cff9d6.png" width="33%"></img>
 <img src="https://user-images.githubusercontent.com/62685492/77764325-d4b4d600-707f-11ea-8277-72764bd2ecfa.png" width="33%"></img>
 </div>
+<h4>클래스 다이어그램</h4>
+<div
+<img src="https://user-images.githubusercontent.com/62685492/77772762-ffa52700-708b-11ea-8eab-9ed384c6cb32.png" width="20%">
+<img src="https://user-images.githubusercontent.com/62685492/77772769-016eea80-708c-11ea-8927-404ec6b0c081.gif" width="20%">
+<img src="https://user-images.githubusercontent.com/62685492/77772770-02078100-708c-11ea-9870-55c90bc61cc2.png" width="20%">
+<img src="https://user-images.githubusercontent.com/62685492/77772772-02a01780-708c-11ea-813e-5649daa09caa.png" width="20%">
+<img src="https://user-images.githubusercontent.com/62685492/77772773-0338ae00-708c-11ea-9396-a10d6aa60661.png" width="20%">
+<img src="https://user-images.githubusercontent.com/62685492/77772776-03d14480-708c-11ea-95f2-70747031b9eb.png" width="20%">
+<img src="https://user-images.githubusercontent.com/62685492/77772779-0469db00-708c-11ea-85aa-6231b2d40bf0.png" width="20%">
+<img src="https://user-images.githubusercontent.com/62685492/77772781-059b0800-708c-11ea-95d0-5d67d5cdacb5.png" width="20%">
+<img src="https://user-images.githubusercontent.com/62685492/77772782-059b0800-708c-11ea-8f81-3d029fa9d37a.png" width="20%">
+<img src="https://user-images.githubusercontent.com/62685492/77772787-06339e80-708c-11ea-82b2-c18f442ee741.png" width="20%">
+<img src="https://user-images.githubusercontent.com/62685492/77772790-06cc3500-708c-11ea-9fca-4471d53f981e.png" width="20%">
+<img src="https://user-images.githubusercontent.com/62685492/77772801-09c72580-708c-11ea-908b-59e60e7d9bc7.png" width="20%">
+</div>
 <h4>-주요담당 화면 및 기능</h4>
 <h6>*화면*</h6>
 <img src="https://user-images.githubusercontent.com/62685492/77767867-08462f00-7085-11ea-8cd9-b2913044284c.PNG">
 <h6>*관련중요코드*</h6>
-
-	public HashMap<String, Object> bizSelectList(String genre, String area, String schedule, String sWord ,int pageNum) {
-		
-		HashMap<String, Object> resMap = new HashMap<String, Object>();
-		HashMap<String, Object> voMap  = new HashMap<String, Object>();
-		ArrayList<String> areaList     = new ArrayList<String>();
-		int totPblCount = 0;
-		switch(genre) 
-		{
-			case "drama": 
-				genre = "연극";	
-				break;
-			case "musical":
-				genre = "뮤지컬";
-				break;
-			case "concert":
-				genre = "콘서트";
-				break;
-			
-			case "childdrama":
-				genre = "아동극";
-				break;
-			default:
-				break;
-		}
-		
-		switch(area)
-		{
-			case "area01":
-				areaList.add("경기%");
-				areaList.add("서울%");
-				break;
-			case "area02":
-				areaList.add("충청%");
-				areaList.add("대전%");
-				break;
-			case "area03":
-				areaList.add("경상%");
-				areaList.add("대구%");
-				areaList.add("부산%");
-				break;
-			case "area04":
-				areaList.add("전라%");
-				areaList.add("광주%");
-				areaList.add("전주%");
-				break;
-			case "area05":
-				area = "etc";
-				break;
-			default:
-				break;
-		}
-
-		if(!("all".equals(sWord)))
-		{
-			sWord =sWord+"%";
-		}
-		voMap.put("sWord", sWord);
-		voMap.put("genre", genre);
-		voMap.put("area", area);
-		voMap.put("areaList", areaList);
-		
-		// 날짜 처리 관련 로직
-		if("all".equals(schedule))
-		{
-			voMap.put("date", schedule);
-		}
-		else
-		{
-			Calendar calendar = Calendar.getInstance();
-			
-			if("tomorrow".equals(schedule))
-			{
-				calendar.add(Calendar.DATE, 1);
-			}
-			
-			int year  = calendar.get(Calendar.YEAR);
-			int month = calendar.get(Calendar.MONTH)+1;
-			int day	  = calendar.get(Calendar.DATE);
-			String rMonth = String.valueOf(month);
-			if(month<10) 
-			{
-				rMonth="0"+rMonth;
-			}
-			String date = String.valueOf(year)+"."+rMonth+"."+String.valueOf(day);
-			voMap.put("date", date+"%");
-		}
-		
-		List<PblprfrJoinDTO> totPblList = pblQebc.selectList(voMap); // 총 검색된 수를 구하기 위한 것
-		List<PblprfrJoinDTO> pblList = null;
-		
-		totPblCount = totPblList.size();
-		if(totPblCount != 0) 
-		{
-			int startRow  = (pageNum - 1) * MAXSIZE +1 ;
-			
-			voMap.put("maxSize" , MAXSIZE);
-			voMap.put("startRow", startRow);
-			
-			pblList = pblQebc.selectList(voMap); // 진짜 화면에 뿌릴 거 가져오는 것
-		}
-		HashMap<String,Object> resPaging = commonBiz.bizPaging(pageNum, totPblCount, 5, MAXSIZE);
-		
-		resMap.put("pblList", pblList);
-		resMap.put("totPblCount", totPblCount);
-		resMap.put("pageCount", resPaging.get("pageCount"));
-		resMap.put("startPage", resPaging.get("startPage"));
-		resMap.put("endPage", resPaging.get("endPage"));
-
-		return resMap;
-	}
