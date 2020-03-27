@@ -18,7 +18,7 @@
 <img src="https://user-images.githubusercontent.com/62685492/77764322-d383a900-707f-11ea-98b3-476da8cff9d6.png" width="33%"></img>
 <img src="https://user-images.githubusercontent.com/62685492/77764325-d4b4d600-707f-11ea-8277-72764bd2ecfa.png" width="33%"></img>
 </div>
-<h4>클래스 다이어그램</h4>
+<h4>-클래스 다이어그램</h4>
 <div
 <img src="https://user-images.githubusercontent.com/62685492/77772762-ffa52700-708b-11ea-8eab-9ed384c6cb32.png" width="20%">
 <img src="https://user-images.githubusercontent.com/62685492/77772769-016eea80-708c-11ea-8927-404ec6b0c081.gif" width="20%">
