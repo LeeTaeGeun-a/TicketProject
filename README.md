@@ -18,6 +18,6 @@
 <img src="https://user-images.githubusercontent.com/62685492/77764322-d383a900-707f-11ea-98b3-476da8cff9d6.png" width="33%"></img>
 <img src="https://user-images.githubusercontent.com/62685492/77764325-d4b4d600-707f-11ea-8277-72764bd2ecfa.png" width="33%"></img>
 </div>
-<h4>-주요담당 화면 및 기능구현 코드</h4>
+<h4>-주요담당 화면 및 기능</h4>
 <img src="https://user-images.githubusercontent.com/62685492/77767867-08462f00-7085-11ea-8cd9-b2913044284c.PNG">
 
