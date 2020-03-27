@@ -8,6 +8,9 @@
   <br>
   <li>사용기술</li>
     <ul>
-      <li>ㅇ</li>
-  </ul>
+      <li>O/S : Window10</li>
+      <li>Server: Apache Tomcat v8.5</li>
+      <li>DB : Oracle 11g</li>
+      <li>Framework : Spring
+    </ul>
 </ul>
