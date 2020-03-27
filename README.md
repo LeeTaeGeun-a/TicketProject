@@ -9,7 +9,7 @@
   <li>프로젝트 기여도 : 60%
   <br>
   <li>사용기술</li>
-  <img src="https://user-images.githubusercontent.com/62685492/77758883-1bea9900-7077-11ea-8c02-cb89964bcc2e.png" width ="90%"></img>
+  <img src="https://user-images.githubusercontent.com/62685492/77758883-1bea9900-7077-11ea-8c02-cb89964bcc2e.png">/img>
   <br>
   <li>ERD</li>
   <img src="https://user-images.githubusercontent.com/62685492/77760284-6c62f600-7079-11ea-908f-ff5f64640c4e.png"></img>
