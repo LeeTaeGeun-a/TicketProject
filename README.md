@@ -7,5 +7,5 @@
   <li>설명 : 다양한 공연정보 확인 과 공연예매가 가능한 사이트 </li> 
   <br>
   <li>사용기술</li>
-  ![개발환경2](https://user-images.githubusercontent.com/62685492/77758883-1bea9900-7077-11ea-8c02-cb89964bcc2e.png)
+  <img src="https://user-images.githubusercontent.com/62685492/77758883-1bea9900-7077-11ea-8c02-cb89964bcc2e.png" width ="90%"></img>
 </ul>
