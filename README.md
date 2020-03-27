@@ -13,8 +13,10 @@
 <h4>ERD</h4>
 <img src="https://user-images.githubusercontent.com/62685492/77760284-6c62f600-7079-11ea-908f-ff5f64640c4e.png"></img>
 <h4>유스케이스/시퀀스 다이어그램</h4>
+<div>
 <img src="https://user-images.githubusercontent.com/62685492/77762877-87d00000-707d-11ea-82b4-65e761e5717c.png" width="33%"></img>
 <img src="https://user-images.githubusercontent.com/62685492/77764322-d383a900-707f-11ea-98b3-476da8cff9d6.png" width="33%"></img>
 <img src="https://user-images.githubusercontent.com/62685492/77764325-d4b4d600-707f-11ea-8277-72764bd2ecfa.png" width="33%"></img>
+</div>
 
 
