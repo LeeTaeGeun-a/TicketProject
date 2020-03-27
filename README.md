@@ -1,2 +1,8 @@
 # TicketProject
-공연예매 프로젝트
+프로젝트명 : TicketProject
+사용기술   : ㅇㅇ
+
+ㅇ
+ㅇ
+ㅇㅇ
+ㅇ
