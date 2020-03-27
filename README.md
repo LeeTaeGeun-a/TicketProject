@@ -12,8 +12,9 @@
 <img src="https://user-images.githubusercontent.com/62685492/77758883-1bea9900-7077-11ea-8c02-cb89964bcc2e.png"></img>
 <h4>ERD</h4>
 <img src="https://user-images.githubusercontent.com/62685492/77760284-6c62f600-7079-11ea-908f-ff5f64640c4e.png"></img>
-<h4>유스케이스 다이어그램</h4>
+<h4>유스케이스/시퀀스 다이어그램</h4>
 <img src="https://user-images.githubusercontent.com/62685492/77762877-87d00000-707d-11ea-82b4-65e761e5717c.png" width=30%></img>
+
 <h4>시퀀스 다이어그램</h4>
 
 
