@@ -41,6 +41,6 @@ https://github.com/LeeTaeGeun-a/TicketProject/blob/master/src/main/java/com/spri
 https://github.com/LeeTaeGeun-a/TicketProject/blob/master/target/classes/mappings/pblprfrQebcMapper.xml
 <br>
 <h6>*화면*</h6>
-<img src="https://user-images.githubusercontent.com/62685492/77815455-8db9f580-70fe-11ea-8011-b681ad463833.PNG">
+<img src="https://user-images.githubusercontent.com/62685492/77815474-c35ede80-70fe-11ea-8b44-c4e59fec192f.PNG">
 
 
