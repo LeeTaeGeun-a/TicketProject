@@ -33,6 +33,8 @@
 <img src="https://user-images.githubusercontent.com/62685492/77772790-06cc3500-708c-11ea-9fca-4471d53f981e.png" width="20%">
 <img src="https://user-images.githubusercontent.com/62685492/77772801-09c72580-708c-11ea-908b-59e60e7d9bc7.png" width="20%">
 </div>
+<h4>시연영상</h4>
+https://youtu.be/o5mx7uyhGFo
 <h4>-주요담당 화면 및 기능</h4>
 <h6>*화면*</h6>
 <img src="https://user-images.githubusercontent.com/62685492/77767867-08462f00-7085-11ea-8cd9-b2913044284c.PNG">
