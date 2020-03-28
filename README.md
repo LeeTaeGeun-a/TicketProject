@@ -72,6 +72,7 @@ https://github.com/LeeTaeGeun-a/TicketProject/blob/master/src/main/java/com/spri
 <br>
 <h6>*화면*</h6>
 <img src="https://user-images.githubusercontent.com/62685492/77821812-64b25880-7130-11ea-9438-1a0872c75a23.PNG">
+<img src="https://user-images.githubusercontent.com/62685492/77821965-c1fad980-7131-11ea-9acd-5b7c89c3c39b.PNG">
 <h6>*관련 소스 경로*</h6>
 https://github.com/LeeTaeGeun-a/TicketProject/blob/master/src/main/java/com/spring/project/PblprfrBizImpl.java
 https://github.com/LeeTaeGeun-a/TicketProject/blob/master/src/main/webapp/resources/js/insertFormPbl.js
