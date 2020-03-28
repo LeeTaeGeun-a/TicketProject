@@ -34,11 +34,15 @@
 <img src="https://user-images.githubusercontent.com/62685492/77772801-09c72580-708c-11ea-908b-59e60e7d9bc7.png" width="20%">
 </div>
 <h4>-주요담당 화면 및 기능</h4>
-<h6>*화면*</h6>
 1.공연검색 페이지
+<h6>*화면*</h6>
 <img src="https://user-images.githubusercontent.com/62685492/77767867-08462f00-7085-11ea-8cd9-b2913044284c.PNG">
 <h6>*관련중요코드 경로*</h6>
 https://github.com/LeeTaeGeun-a/TicketProject/blob/master/src/main/java/com/spring/project/PblprfrBizImpl.java
 https://github.com/LeeTaeGeun-a/TicketProject/blob/master/target/classes/mappings/pblprfrQebcMapper.xml
+
+2.공연상세 페이지
+<h6>*화면*</h6>
+<img src="https://user-images.githubusercontent.com/62685492/77815297-f86a3180-70fc-11ea-985d-281f714b4a13.PNG">
 
 
