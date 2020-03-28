@@ -36,24 +36,24 @@
 <h4>-주요담당 화면 및 기능</h4>
 <h6>*화면*</h6>
 <img src="https://user-images.githubusercontent.com/62685492/77767867-08462f00-7085-11ea-8cd9-b2913044284c.PNG">
-<h6>*관련중요코드 경로*</h6>
+<h6>*관련중요  경로*</h6>
 https://github.com/LeeTaeGeun-a/TicketProject/blob/master/src/main/java/com/spring/project/PblprfrBizImpl.java
 https://github.com/LeeTaeGeun-a/TicketProject/blob/master/target/classes/mappings/pblprfrQebcMapper.xml
 <br>
 <h6>*화면*</h6>
 <img src="https://user-images.githubusercontent.com/62685492/77819257-d7193d80-711c-11ea-8b1b-327cedc78e4b.PNG">
-<h6>*관련중요코드 경로*</h6>
+<h6>*관련중요 소스 경로*</h6>
 https://github.com/LeeTaeGeun-a/TicketProject/blob/master/src/main/java/com/spring/project/PblprfrBizImpl.java
 https://github.com/LeeTaeGeun-a/TicketProject/blob/master/src/main/java/com/spring/project/ScrinngBizImpl.java
 https://github.com/LeeTaeGeun-a/TicketProject/blob/master/src/main/java/com/spring/project/ReviewBIzImpl.java
 <br>
 <h6>*화면*</h6>
 <img src="https://user-images.githubusercontent.com/62685492/77819145-ec419c80-711b-11ea-8bbb-c0bd63922596.PNG">
-<h6>*관련중요코드 경로*</h6>
+<h6>*관련중요 소스 경로*</h6>
 https://github.com/LeeTaeGeun-a/TicketProject/blob/master/src/main/java/com/spring/project/AdvantkBizImpl.java
 <br>
 <h6>*화면*</h6>
 <img src="https://user-images.githubusercontent.com/62685492/77819795-0631ae00-7121-11ea-9083-c32c74f16e89.PNG">
-<h6>*관련중요코드 경로*</h6>
+<h6>*관련중요 소스 경로*</h6>
 https://github.com/LeeTaeGeun-a/TicketProject/blob/master/src/main/java/com/spring/project/AdvantkBizImpl.java
 https://github.com/LeeTaeGeun-a/TicketProject/blob/master/src/main/java/com/spring/project/ReviewBIzImpl.java
