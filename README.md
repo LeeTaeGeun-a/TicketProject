@@ -55,3 +55,5 @@ https://github.com/LeeTaeGeun-a/TicketProject/blob/master/src/main/java/com/spri
 <h6>*화면*</h6>
 <img src="https://user-images.githubusercontent.com/62685492/77819795-0631ae00-7121-11ea-9083-c32c74f16e89.PNG">
 <h6>*관련중요코드 경로*</h6>
+https://github.com/LeeTaeGeun-a/TicketProject/blob/master/src/main/java/com/spring/project/AdvantkBizImpl.java
+https://github.com/LeeTaeGeun-a/TicketProject/blob/master/src/main/java/com/spring/project/ReviewBIzImpl.java
