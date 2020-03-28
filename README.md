@@ -41,7 +41,7 @@ https://github.com/LeeTaeGeun-a/TicketProject/blob/master/src/main/java/com/spri
 https://github.com/LeeTaeGeun-a/TicketProject/blob/master/target/classes/mappings/pblprfrQebcMapper.xml
 <br>
 <h6>*화면*</h6>
-<img src="https://user-images.githubusercontent.com/62685492/77815942-374eb600-7102-11ea-91f2-47ffbdc354f9.PNG">
+<img src="https://user-images.githubusercontent.com/62685492/77819257-d7193d80-711c-11ea-8b1b-327cedc78e4b.PNG">
 <h6>*관련중요코드 경로*</h6>
 https://github.com/LeeTaeGeun-a/TicketProject/blob/master/src/main/java/com/spring/project/PblprfrBizImpl.java
 https://github.com/LeeTaeGeun-a/TicketProject/blob/master/src/main/java/com/spring/project/ScrinngBizImpl.java
@@ -49,4 +49,5 @@ https://github.com/LeeTaeGeun-a/TicketProject/blob/master/src/main/java/com/spri
 <br>
 <h6>*화면*</h6>
 <img src="https://user-images.githubusercontent.com/62685492/77819145-ec419c80-711b-11ea-8bbb-c0bd63922596.PNG">
+<h6>*관련중요코드 경로*</h6>
 
