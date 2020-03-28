@@ -55,6 +55,8 @@ https://github.com/LeeTaeGeun-a/TicketProject/blob/master/src/main/java/com/spri
 <h6>*화면*</h6>
 <img src="https://user-images.githubusercontent.com/62685492/77820903-26fe0180-7129-11ea-9766-bf5e623b4b3e.PNG">
 <h6>*관련중요 소스 경로*</h6>
+https://github.com/LeeTaeGeun-a/TicketProject/blob/master/src/main/java/com/spring/project/MberBizImpl.java
+https://github.com/LeeTaeGeun-a/TicketProject/blob/master/src/main/java/com/spring/project/IntrstListBizImpl.java
 <br>
 <h6>*화면*</h6>
 <img src="https://user-images.githubusercontent.com/62685492/77819795-0631ae00-7121-11ea-9083-c32c74f16e89.PNG">
