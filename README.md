@@ -43,4 +43,7 @@ https://github.com/LeeTaeGeun-a/TicketProject/blob/master/target/classes/mapping
 <h6>*화면*</h6>
 <img src="https://user-images.githubusercontent.com/62685492/77815942-374eb600-7102-11ea-91f2-47ffbdc354f9.PNG">
 <h6>*관련중요코드 경로*</h6>
+https://github.com/LeeTaeGeun-a/TicketProject/blob/master/src/main/java/com/spring/project/PblprfrBizImpl.java
+https://github.com/LeeTaeGeun-a/TicketProject/blob/master/src/main/java/com/spring/project/ScrinngBizImpl.java
+https://github.com/LeeTaeGeun-a/TicketProject/blob/master/src/main/java/com/spring/project/ReviewBIzImpl.java
 
