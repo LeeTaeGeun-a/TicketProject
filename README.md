@@ -42,5 +42,5 @@ https://github.com/LeeTaeGeun-a/TicketProject/blob/master/target/classes/mapping
 <br>
 <h6>*화면*</h6>
 <img src="https://user-images.githubusercontent.com/62685492/77815474-c35ede80-70fe-11ea-8b44-c4e59fec192f.PNG">
-
+<h6>*관련중요코드 경로*</h6>
 
