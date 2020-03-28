@@ -65,5 +65,5 @@ https://github.com/LeeTaeGeun-a/TicketProject/blob/master/src/main/java/com/spri
 https://github.com/LeeTaeGeun-a/TicketProject/blob/master/src/main/java/com/spring/project/ReviewBIzImpl.java
 <br>
 <h6>*화면*</h6>
-<img src="https://user-images.githubusercontent.com/62685492/77821289-4cd8d580-712c-11ea-9b6e-5bb55dcf83ae.PNG">
+<img src="https://user-images.githubusercontent.com/62685492/77821339-dee0de00-712c-11ea-9cd4-a34851b834b1.PNG">
 <h6>*관련중요 소스 경로*</h6>
